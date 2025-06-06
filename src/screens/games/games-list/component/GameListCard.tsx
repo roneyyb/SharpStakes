@@ -6,9 +6,11 @@ import { useTheme } from '@/utils/theme';
 interface GameListCardProps {
     game: Game;
     onPress?: () => void;
+    showButton?: boolean
+    showFullName?: boolean
 }
 
-const GameListCard = ({ game, onPress }: GameListCardProps) => {
+const GameListCard = ({ game, onPress, showButton, showFullName }: GameListCardProps) => {
     const { colors } = useTheme();
     return (
         <TouchableOpacity
@@ -35,13 +37,33 @@ const GameListCard = ({ game, onPress }: GameListCardProps) => {
                 </View>
             </View>
 
+            {(game.status === "inProgress" || game.status === "scheduled") && showButton &&
+                <ButtonPressableWithText
+                    textProps={{
+                        text: game.status == "inProgress" ? "MAKE PREDICITON" : "CHECK DETAILS",
+                        textColor: colors.text,
+                        fontFamily: FontsWithWeight.circular_700,
+                        fontSize: 16,
 
+                    }}
+                    onPress={async () => {
+                        try {
+                            onPress && onPress()
+
+                            // await addItem(StorageKeys.userPredictionDetails, { gameId: game.id, pick: selectedPick, amount: amount })
+                        } catch (error) {
+                            console.log("error", error)
+                        }
+                    }}
+                    containerStyle={{ width: "100%", marginTop: 20, height: 50, borderRadius: 10, borderColor: colors.accent, borderWidth: 1, alignItems: "center", justifyContent: "center" }}
+                />}
         </TouchableOpacity>
     );
 };
 
 import { StyleSheet } from 'react-native';
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+import ButtonPressableWithText from '@/components/button/ButtonPressableWithText';
 
 const styles = StyleSheet.create({
     centeredRecord: {

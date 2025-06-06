@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '@/navigation/StackNavigator';
 import GameFlatList from './views/GameFlatList';
 import GameFilter from './component/GameFilter';
+import GameListHeader from './component/GameListHeader';
 
 const GamesListScreen = () => {
     const { data: games, isLoading, error } = useGames();
@@ -22,8 +23,9 @@ const GamesListScreen = () => {
 
     return (
         <StatusBarHoc>
-            <View style={{ flex: 1, padding: 16 }}>
 
+            <View style={{ flex: 1, padding: 16 }}>
+                <GameListHeader onPressProfile={() => { navigation.navigate(ScreenNames.Profile) }} />
                 {isLoading && <ActivityIndicator size="large" />}
                 {error && <Text>Error loading games.</Text>}
                 <GameFilter onFilterChange={setFilter} />

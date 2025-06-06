@@ -1,7 +1,7 @@
 import { View, StyleSheet, Pressable, ViewStyle } from 'react-native'
 import React from 'react'
 import WrappedText, { WrappedTextProps } from '../text/WrappedText'
-import { BackButton } from '@/assets/svg'
+import { BackButton } from '@/assets/svg';
 
 interface HeaderWithBackTitleAndRightComponentProps {
     onPressBack: Function

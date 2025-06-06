@@ -5,10 +5,17 @@ import { useGames } from '@/api/games';
 import GameFlatList from './views/GameFlatList';
 import GameFilter from '../component/GameFilter';
 
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '@/navigation/StackNavigator';
+
 const GamesListScreen = () => {
     const { data: games, isLoading, error } = useGames();
-
+    const navigation = useNavigation();
     const [filter, setFilter] = React.useState<'scheduled' | 'inProgress' | 'final'>('scheduled');
+
+    const handleGamePress = (game: any) => {
+        navigation.navigate(ScreenNames.GameDetails, { id: game.id });
+    };
 
     console.log("DATA", games, isLoading, error);
 
@@ -19,7 +26,7 @@ const GamesListScreen = () => {
                 {error && <Text>Error loading games.</Text>}
                 <GameFilter onFilterChange={setFilter} />
                 {!isLoading && !error && (
-                    <GameFlatList games={games || []} />
+                    <GameFlatList games={games?.filter((game) => game.status === filter) || []} onPress={handleGamePress} />
                 )}
             </View>
         </StatusBarHoc>

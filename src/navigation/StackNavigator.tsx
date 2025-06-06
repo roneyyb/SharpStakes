@@ -10,7 +10,7 @@ import { View } from 'react-native';
 
 export type RootStackParamList = {
     GamesList: undefined;
-    GameDetails: undefined;
+    GameDetails: { id: string };
     Profile: undefined;
 };
 

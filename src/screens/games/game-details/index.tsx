@@ -29,9 +29,16 @@ const GameDetailsScreen = () => {
 
     return (
         <View style={{ flex: 1, padding: 16 }}>
-            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{game.title}</Text>
-            <Text style={{ marginVertical: 8 }}>{game.description}</Text>
-            <Text style={{ color: '#666' }}>{game.date}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{game.homeTeam.name} vs {game.awayTeam.name}</Text>
+            <Text style={{ marginVertical: 8 }}>Status: {game.status}</Text>
+            {game.period && <Text>Period: {game.period}</Text>}
+            {game.clock && <Text>Clock: {game.clock}</Text>}
+            <Text>Home Score: {game.homeTeam.score ?? '-'}</Text>
+            <Text>Away Score: {game.awayTeam.score ?? '-'}</Text>
+            {game.winner && <Text>Winner: {game.winner}</Text>}
+            <Text style={{ marginTop: 8 }}>
+                Odds: {game.odds.spread} | Favorite: {game.odds.favorite}
+            </Text>
         </View>
     );
 };

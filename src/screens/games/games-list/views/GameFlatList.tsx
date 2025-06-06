@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import GameListCard from '@/screens/games/component/GameListCard';
+import GameListCard from '@/screens/games/games-list/component/GameListCard';
 import { Game } from '@/api/games';
 
 interface GameFlatListProps {

@@ -1,7 +1,7 @@
 import { SvgXml } from 'react-native-svg';
 
 
-function BackButton({ width, height, color, opacity }) {
+function BackButton({ width = "49", height = "49", color = "white", opacity = "0.1" }) {
     const svgXml = `<svg width=${width || '49'} height=${height || '49'
         } viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect opacity= ${opacity || '0.1'

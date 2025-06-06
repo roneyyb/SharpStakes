@@ -27,17 +27,17 @@ const screens = [
     {
         name: ScreenNames.GamesList,
         component: GamesListScreen,
-        options: { title: 'Games List' },
+        options: { title: 'Games List', headerShown: false },
     },
     {
         name: ScreenNames.GameDetails,
         component: GameDetailsScreen,
-        options: { title: 'Game Details' },
+        options: { title: 'Game Details', headerShown: false },
     },
     {
         name: ScreenNames.Profile,
         component: ProfileScreen,
-        options: { title: 'Profile' },
+        options: { title: 'Profile', headerShown: false },
     },
 ];
 

@@ -6,21 +6,11 @@
  */
 
 import React from 'react';
-import {
 
-    StatusBar,
-
-    useColorScheme,
-    View,
-} from 'react-native';
-
-import {
-    Colors,
-
-} from 'react-native/Libraries/NewAppScreen';
-import { ThemeProviderSS } from './src/utils/theme';
 import StackNavigator from '@/navigation/StackNavigator';
-
+import { ThemeProviderSS } from './src/utils/theme';
+import { QueryClientProvider } from 'react-query';
+import queryClient from '@/utils/queryClient';
 
 function App(): React.JSX.Element {
 
@@ -38,7 +28,9 @@ function App(): React.JSX.Element {
 
     return (
         <ThemeProviderSS>
-            <StackNavigator />
+            <QueryClientProvider client={queryClient}>
+                <StackNavigator />
+            </QueryClientProvider>
         </ThemeProviderSS>
 
     );

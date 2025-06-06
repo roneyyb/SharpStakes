@@ -20,7 +20,7 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
 
     if (isLoading) {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
                 <ActivityIndicator size="large" />
             </View>
         );
@@ -28,7 +28,7 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
 
     if (error || !game) {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
                 <Text>Error loading game details.</Text>
             </View>
         );

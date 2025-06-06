@@ -11,7 +11,7 @@ const PredictedGameDetailCard = ({ prediction }: { prediction: UserPrediction })
 
     if (isLoading) {
         return (
-            <View style={[styles.centered, { backgroundColor: colors.background }]}> 
+            <View style={[styles.centered, { backgroundColor: colors.background }]}>
                 <ActivityIndicator size="small" />
             </View>
         );
@@ -19,21 +19,33 @@ const PredictedGameDetailCard = ({ prediction }: { prediction: UserPrediction })
 
     if (error || !game) {
         return (
-            <View style={[styles.centered, { backgroundColor: colors.background }]}> 
+            <View style={[styles.centered, { backgroundColor: colors.background }]}>
                 <Text style={{ color: colors.text }}>Game not found.</Text>
             </View>
         );
     }
 
     return (
-        <View style={[styles.card, { backgroundColor: colors.cardBackground }]}> 
-            <WrappedText text={`${game.homeTeam.abbreviation} vs ${game.awayTeam.abbreviation}`} textColor={colors.text} fontFamily={FontsWithWeight.circular_900} fontSize={20} />
-            <Text style={{ color: colors.text }}>Your Pick: {prediction.pick}</Text>
-            <Text style={{ color: colors.text }}>Amount: {prediction.amount}</Text>
-            <Text style={{ color: colors.text }}>Result: {prediction.result}</Text>
-            {typeof prediction.payout === 'number' && (
-                <Text style={{ color: colors.text }}>Payout: {prediction.payout}</Text>
-            )}
+        <View style={[styles.card, { backgroundColor: colors.cardBackground, rowGap: 5 }, { backgroundColor: colors.cardBackground, padding: 16, marginHorizontal: 5, borderRadius: 8, marginBottom: 16, boxShadow: '0 2px 4px #ffffff66', elevation: 10 }]}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                <WrappedText text={`${game.homeTeam.abbreviation} vs ${game.awayTeam.abbreviation}`}
+                    textColor={colors.text} fontFamily={FontsWithWeight.circular_900}
+                    fontSize={35}
+                />
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
+
+                <WrappedText text={`Your Pick: ${prediction.pick}`} textColor={colors.text} fontFamily={FontsWithWeight.circular_450} fontSize={20} />
+                <WrappedText text={`Invested: ${prediction.amount}`} textColor={colors.text} fontFamily={FontsWithWeight.circular_450} fontSize={20} />
+
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                {typeof prediction.payout === 'number' ? (
+                    <WrappedText text={`Payout Done: ${prediction.payout}`} textColor={colors.text} fontFamily={FontsWithWeight.circular_450} fontSize={20} />
+                ) : <View />}
+                <WrappedText text={`Result: ${prediction.result}`} textColor={prediction.result === 'win' ? colors.win : colors.loss} fontFamily={FontsWithWeight.circular_450} fontSize={20} />
+
+            </View>
         </View>
     );
 };
@@ -41,7 +53,7 @@ const PredictedGameDetailCard = ({ prediction }: { prediction: UserPrediction })
 const styles = StyleSheet.create({
     card: {
         borderRadius: 12,
-        padding: 16,
+        padding: 20,
         marginVertical: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

@@ -10,6 +10,7 @@ const PredictionHistoryList = ({ predictions }: { predictions: any }) => {
     return (
         <View style={{}}>
             <WrappedText text='Prediction History' textStyle={{ textTransform: "uppercase" }} textColor={colors.text} fontFamily={FontsWithWeight.circular_900} fontSize={25} />
+            <View style={{ marginTop: 10 }} />
             <FlatList
                 data={predictions}
                 renderItem={({ item }) => <PredictedGameDetailCard prediction={item} />}

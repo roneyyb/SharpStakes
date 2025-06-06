@@ -1,14 +1,14 @@
-import { Text, View, ActivityIndicator, StyleSheet } from 'react-native';
+import { Text, View, ActivityIndicator, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { useUser } from '@/api/user';
 import { useTheme } from '@/utils/theme';
-import { Profile } from '@/assets/svg';
+import { BackButton, Profile } from '@/assets/svg';
 import StatusBarHoc from '@/hoc/StatusBarHoc';
 import StatsDetails from './views/StatsDetails';
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import PredictionHistoryList from './views/PredictionHistoryList';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
     const { data: user, isLoading, error } = useUser();
 
     const { colors } = useTheme();
@@ -31,6 +31,9 @@ const ProfileScreen = () => {
 
     return (
         <StatusBarHoc>
+            <Pressable style={{ marginLeft: "5%" }} onPress={() => { navigation.goBack() }}>
+                <BackButton />
+            </Pressable>
             <View style={[styles.container, { backgroundColor: colors.background }]}>
                 <View style={{ alignItems: "center", rowGap: 10 }}>
                     <Profile height='100' width='100' color={colors.text} />

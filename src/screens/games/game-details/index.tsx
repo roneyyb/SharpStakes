@@ -4,10 +4,14 @@ import { useRoute } from '@react-navigation/native';
 import { useGame } from '@/api/games';
 import { useTheme } from '@/utils/theme';
 import StatusBarHoc from '@/hoc/StatusBarHoc';
+import HeaderWithBackTitleAndRightComponent from '@/components/header/HeaderWithBackButtonAndText';
+import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+import GameOdsCard from './components/GameOds';
+import GameSchedule from './components/GameSchedule';
 
 type RouteParams = { id: string };
 
-const GameDetailsScreen = () => {
+const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
     const route = useRoute();
     // @ts-ignore
     const { id } = route.params as RouteParams;
@@ -34,18 +38,31 @@ const GameDetailsScreen = () => {
 
     return (
         <StatusBarHoc>
+            <View style={{ flex: 1, backgroundColor: colors.background, paddingHorizontal: 15, rowGap: 20 }}>
+                <HeaderWithBackTitleAndRightComponent
+                    onPressBack={() => {
+                        navigation.goBack();
+                    }}
+                    titleProps={{
+                        text: game.homeTeam.abbreviation + ' vs ' + game.awayTeam.abbreviation,
+                        fontSize: 24,
+                        textColor: colors.text,
+                        fontFamily: 'CircularStd-Bold',
+                        textStyle: { marginLeft: 10 }
+                    }}
+                    containerStyle={{}}
+                />
 
-            <View style={{ flex: 1, padding: 16, backgroundColor: colors.background }}>
-                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{game.homeTeam.name} vs {game.awayTeam.name}</Text>
-                <Text style={{ marginVertical: 8 }}>Status: {game.status}</Text>
-                {game.period && <Text>Period: {game.period}</Text>}
-                {game.clock && <Text>Clock: {game.clock}</Text>}
-                <Text>Home Score: {game.homeTeam.score ?? '-'}</Text>
-                <Text>Away Score: {game.awayTeam.score ?? '-'}</Text>
-                {game.winner && <Text>Winner: {game.winner}</Text>}
-                <Text style={{ marginTop: 8 }}>
-                    Odds: {game.odds.spread} | Favorite: {game.odds.favorite}
-                </Text>
+
+                <WrappedText
+                    text='Game Details'
+                    fontSize={50}
+                    textColor={colors.text}
+
+                    fontFamily={FontsWithWeight.circular_700}
+                />
+                <GameSchedule game={game} />
+                {game.odds && <GameOdsCard game={game} />}
             </View>
         </StatusBarHoc>
     );

@@ -36,7 +36,7 @@ const ThemeContext = createContext({
 
 export const useTheme = () => useContext(ThemeContext);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ThemeProviderSS: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const scheme = useColorScheme();
     const theme = scheme === 'dark' ? 'dark' : 'light';
     const colors = useMemo(() => (theme === 'dark' ? darkColors : lightColors), [theme]);

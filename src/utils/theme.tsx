@@ -23,7 +23,7 @@ const lightColors = {
     filterBackground: '#F0F0F0',
     filterActiveBackground: '#1ED760',
     filterText: '#444444',
-    filterActiveText: '#FFFFFF',
+    filterActiveText: '#000000',
     filterBorder: '#DDDDDD',
 
     // Status Colors

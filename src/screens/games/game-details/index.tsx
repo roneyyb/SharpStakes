@@ -8,6 +8,7 @@ import HeaderWithBackTitleAndRightComponent from '@/components/header/HeaderWith
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import GameOdsCard from './components/GameOds';
 import GameSchedule from './components/GameSchedule';
+import GameListCard from '../games-list/component/GameListCard';
 
 type RouteParams = { id: string };
 
@@ -38,29 +39,22 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
 
     return (
         <StatusBarHoc>
-            <View style={{ flex: 1, backgroundColor: colors.background, paddingHorizontal: 15, rowGap: 20 }}>
+            <View style={{ flex: 1, backgroundColor: colors.background, paddingHorizontal: "5%", rowGap: 0 }}>
                 <HeaderWithBackTitleAndRightComponent
                     onPressBack={() => {
                         navigation.goBack();
                     }}
                     titleProps={{
-                        text: game.homeTeam.abbreviation + ' vs ' + game.awayTeam.abbreviation,
+                        text: "Game Details",
                         fontSize: 24,
                         textColor: colors.text,
                         fontFamily: 'CircularStd-Bold',
                         textStyle: { marginLeft: 10 }
                     }}
-                    containerStyle={{}}
+                    containerStyle={{ marginHorizontal: "1%" }}
                 />
-
-
-                <WrappedText
-                    text='Game Details'
-                    fontSize={50}
-                    textColor={colors.text}
-
-                    fontFamily={FontsWithWeight.circular_700}
-                />
+                <View style={{ marginTop: 30 }} />
+                <GameListCard game={game} />
                 <GameSchedule game={game} />
                 {game.odds && <GameOdsCard game={game} />}
             </View>

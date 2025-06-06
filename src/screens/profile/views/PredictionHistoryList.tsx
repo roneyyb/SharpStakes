@@ -14,7 +14,7 @@ const PredictionHistoryList = ({ predictions }: { predictions: any }) => {
             <FlatList
                 data={predictions}
                 renderItem={({ item }) => <PredictedGameDetailCard prediction={item} />}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index + ""}
             />
         </View>
     );

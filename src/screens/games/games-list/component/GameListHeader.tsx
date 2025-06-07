@@ -36,9 +36,11 @@ const GameListHeader = ({
             <View style={{ marginLeft: 10, flex: 1 }}>
                 <WrappedText text={"Games"} textColor={colors.text} fontFamily="CircularStd-Bold" fontSize={18} />
             </View>
-            <View style={{ boxShadow: '0 2px 4px #ffffff66', elevation: 10, backgroundColor: colors.cardBackground, paddingVertical: 5, borderRadius: 10, paddingHorizontal: 20 }}>
+            <Pressable onPress={() => {
+                onPressProfile()
+            }} style={{ boxShadow: '0 2px 4px #ffffff66', elevation: 10, backgroundColor: colors.cardBackground, paddingVertical: 5, borderRadius: 10, paddingHorizontal: 20 }}>
                 <WrappedText text={'Bal: ' + (user?.balance?.toString() || "0")} textColor={colors.text} fontFamily="CircularStd-Bold" fontSize={18} textStyle={{}} />
-            </View>
+            </Pressable>
         </View>
     )
 }

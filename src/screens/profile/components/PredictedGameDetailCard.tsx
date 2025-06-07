@@ -29,7 +29,7 @@ const PredictedGameDetailCard = ({ prediction }: { prediction: UserPrediction })
         <View style={[styles.card, { backgroundColor: colors.cardBackground, rowGap: 5 }, { backgroundColor: colors.cardBackground, padding: 16, marginHorizontal: 5, borderRadius: 8, marginBottom: 16, boxShadow: '0 2px 4px #ffffff66', elevation: 10 }]}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <WrappedText text={`${game.homeTeam.abbreviation} vs ${game.awayTeam.abbreviation}`}
-                    textColor={colors.text} fontFamily={FontsWithWeight.circular_900}
+                    textColor={colors.text} fontFamily={FontsWithWeight.circular_700}
                     fontSize={35}
                 />
             </View>

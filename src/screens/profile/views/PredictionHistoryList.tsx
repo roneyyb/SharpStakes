@@ -14,7 +14,7 @@ const PredictionHistoryList = ({ predictions }: { predictions: any }) => {
                 text='Prediction History'
                 textStyle={{ textTransform: "uppercase" }}
                 textColor={colors.text}
-                fontFamily={FontsWithWeight.circular_900}
+                fontFamily={FontsWithWeight.circular_700}
                 fontSize={25}
             />
             <View style={{ marginTop: 10 }} />

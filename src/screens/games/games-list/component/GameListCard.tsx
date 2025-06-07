@@ -7,6 +7,7 @@ import { useTheme } from '@/utils/theme';
 import moment from 'moment';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import TeamInfo from '@/components/team-info';
 
 interface GameListCardProps {
     game: Game;
@@ -22,7 +23,7 @@ const GameListCard = ({ game: initialGame, onPress, showButton, showFullName }: 
         <TouchableOpacity
             onPress={onPress}
             activeOpacity={0.8}
-            style={{ backgroundColor: colors.cardBackground, padding: 16, marginHorizontal: 5, borderRadius: 8, marginBottom: 16, boxShadow: '0 2px 4px #ffffff66', elevation: 10 }}
+            style={{ backgroundColor: colors.cardBackground, padding: 20, marginHorizontal: 5, borderRadius: 8, marginBottom: 16, boxShadow: '0 2px 4px #ffffff66', elevation: 10 }}
         >
             {game.status === "inProgress" &&
                 <View style={{ paddingBottom: 10 }}>
@@ -42,30 +43,28 @@ const GameListCard = ({ game: initialGame, onPress, showButton, showFullName }: 
 
             />}
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                <View style={{ rowGap: 10 }}>
-
-                    <WrappedText
-                        text={game.homeTeam.abbreviation + (game.homeTeam.score ? " (" + game.homeTeam.score + ")" : "")}
-                        textColor={colors.text}
-                        fontFamily={FontsWithWeight.circular_700}
-                        fontSize={game.homeTeam.score ? 25 : 40} />
-
-                    <WrappedText text={game.homeTeam.record} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
-                </View>
-                <WrappedText text='VS' textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
-                <View style={{ rowGap: 10 }}>
-                    <WrappedText
-                        text={game.awayTeam.abbreviation + (game.awayTeam.score ? " (" + game.awayTeam.score + ")" : "")}
-                        textColor={colors.text}
-                        fontFamily={FontsWithWeight.circular_700}
-                        fontSize={game.awayTeam.score ? 25 : 40}
-                    />
-                    <WrappedText
-                        text={game.awayTeam.record}
-                        textColor={colors.text}
-                        fontFamily={FontsWithWeight.circular_700}
-                        fontSize={20} />
-                </View>
+                <TeamInfo
+                  team={{
+                    abbreviation: game.homeTeam.abbreviation,
+                    score: game.homeTeam.score,
+                    record: game.homeTeam.record,
+                  }}
+                  textColor={colors.text}
+                />
+                <WrappedText
+                  text="VS"
+                  textColor={colors.text}
+                  fontFamily={FontsWithWeight.circular_450}
+                  fontSize={20}
+                />
+                <TeamInfo
+                  team={{
+                    abbreviation: game.awayTeam.abbreviation,
+                    score: game.awayTeam.score,
+                    record: game.awayTeam.record,
+                  }}
+                  textColor={colors.text}
+                />
             </View>
 
             {(game.status === "inProgress" || game.status === "scheduled") && showButton &&

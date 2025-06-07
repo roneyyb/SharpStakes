@@ -26,9 +26,9 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
             <ScrollView style={{ flex: 1, paddingBottom: 40 }}>
                 <View style={[styles.container, { backgroundColor: colors.background }]}>
                     <View style={{ alignItems: "center", rowGap: 10 }}>
-                        <Profile height='100' width='100' color={colors.text} />
-                        <WrappedText text={"@" + user?.username} textColor={colors.text} fontFamily={FontsWithWeight.circular_900} fontSize={35} />
-                        <WrappedText text={"Balance: " + user?.balance} textColor={colors.text} fontFamily={FontsWithWeight.circular_900} fontSize={35} />
+                        <Profile height='120' width='120' color={colors.text} />
+                        <WrappedText text={"@" + user?.username} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={35} />
+                        <WrappedText text={"Balance: " + user?.balance} textColor={colors.text} fontFamily={FontsWithWeight.circular_medium} fontSize={25} />
                     </View>
                     <AnimatedEntrance>      <StatsDetails stats={user?.stats} /></AnimatedEntrance>
 
@@ -45,9 +45,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: "5%",
         rowGap: 30
 
-
-
-
     },
     centered: {
         flex: 1,
@@ -56,7 +53,7 @@ const styles = StyleSheet.create({
     },
     username: {
         fontSize: 28,
-        fontWeight: 'bold',
+
         marginBottom: 12,
     },
     balance: {

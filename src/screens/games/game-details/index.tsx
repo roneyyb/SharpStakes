@@ -65,9 +65,9 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
                         <AnimatedEntrance >
                             <GameListCard game={game} />
                         </AnimatedEntrance>
-                        {game.status !== "final" && <AnimatedEntrance delay={100}> <GameSchedule game={game} />   </AnimatedEntrance>}
-                        {game.odds && <AnimatedEntrance delay={250}><GameOdsCard game={game} /></AnimatedEntrance>}
-                        {game.status == "inProgress" && <AnimatedEntrance delay={400}><MakeYourPick game={game} /></AnimatedEntrance>}
+                        {game.status !== "final" && <AnimatedEntrance delay={50}> <GameSchedule game={game} />   </AnimatedEntrance>}
+                        {game.odds && <AnimatedEntrance delay={100}><GameOdsCard game={game} /></AnimatedEntrance>}
+                        {game.status == "inProgress" && <AnimatedEntrance delay={200}><MakeYourPick game={game} /></AnimatedEntrance>}
                     </ScrollView>
 
                 </View>

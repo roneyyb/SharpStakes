@@ -1,4 +1,5 @@
 
+import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import { useTheme } from '@/utils/theme';
 import React, { useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, StyleSheet, Dimensions } from 'react-native';
@@ -39,9 +40,13 @@ const GameFilter = ({ onFilterChange }: GameFilterProps) => {
                         style={[styles.tab]}
                         onPress={() => handlePress(filter.value as any, idx)}
                     >
-                        <Text style={[styles.tabText, selected === filter.value ? { color: colors.filterActiveText } : {}]}>
-                            {filter.label}
-                        </Text>
+                        <WrappedText
+                            text={filter.label}
+                            textColor={colors.text}
+                            fontFamily={selected === filter.value ? FontsWithWeight.circular_700 : FontsWithWeight.circular_450}
+                            fontSize={16}
+                            textStyle={[styles.tabText, selected === filter.value ? { color: colors.filterActiveText } : {}]}
+                        />
                     </Pressable>
                 ))}
                 <Animated.View

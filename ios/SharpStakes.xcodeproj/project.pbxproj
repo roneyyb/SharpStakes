@@ -10,6 +10,10 @@
 		0C80B921A6F3F58F76C31292 /* libPods-SharpStakes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SharpStakes.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		4BAE7E5841B8C55B9C326F6B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		709F00002DF44A7E004BC2B7 /* CircularStd-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709FFFFC2DF44A7E004BC2B7 /* CircularStd-Medium.ttf */; };
+		709F00012DF44A7E004BC2B7 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709FFFFD2DF44A7E004BC2B7 /* CircularStd-Bold.ttf */; };
+		709F00022DF44A7E004BC2B7 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709FFFFE2DF44A7E004BC2B7 /* CircularStd-Book.ttf */; };
+		709F00032DF44A7E004BC2B7 /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 709FFFFF2DF44A7E004BC2B7 /* CircularStd-Black.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -22,6 +26,10 @@
 		3B4392A12AC88292D35C810B /* Pods-SharpStakes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharpStakes.debug.xcconfig"; path = "Target Support Files/Pods-SharpStakes/Pods-SharpStakes.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SharpStakes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharpStakes.release.xcconfig"; path = "Target Support Files/Pods-SharpStakes/Pods-SharpStakes.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SharpStakes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharpStakes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		709FFFFC2DF44A7E004BC2B7 /* CircularStd-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Medium.ttf"; path = "../src/assets/fonts/CircularStd-Medium.ttf"; sourceTree = "<group>"; };
+		709FFFFD2DF44A7E004BC2B7 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.ttf"; path = "../src/assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		709FFFFE2DF44A7E004BC2B7 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Book.ttf"; path = "../src/assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		709FFFFF2DF44A7E004BC2B7 /* CircularStd-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Black.ttf"; path = "../src/assets/fonts/CircularStd-Black.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = SharpStakes/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SharpStakes/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -70,6 +78,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				709FFFFF2DF44A7E004BC2B7 /* CircularStd-Black.ttf */,
+				709FFFFD2DF44A7E004BC2B7 /* CircularStd-Bold.ttf */,
+				709FFFFE2DF44A7E004BC2B7 /* CircularStd-Book.ttf */,
+				709FFFFC2DF44A7E004BC2B7 /* CircularStd-Medium.ttf */,
 				13B07FAE1A68108700A75B9A /* SharpStakes */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -158,6 +170,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709F00002DF44A7E004BC2B7 /* CircularStd-Medium.ttf in Resources */,
+				709F00012DF44A7E004BC2B7 /* CircularStd-Bold.ttf in Resources */,
+				709F00022DF44A7E004BC2B7 /* CircularStd-Book.ttf in Resources */,
+				709F00032DF44A7E004BC2B7 /* CircularStd-Black.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4BAE7E5841B8C55B9C326F6B /* PrivacyInfo.xcprivacy in Resources */,
@@ -376,10 +392,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -448,10 +461,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

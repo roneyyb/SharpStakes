@@ -7,8 +7,8 @@ const SingleStateDetail = ({ statValue, statName, color }: { statValue: number, 
     const { colors } = useTheme()
     return (
         <View style={{ alignItems: "center", rowGap: 10 }}>
-            <WrappedText text={statValue.toString()} textColor={color} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
-            <WrappedText text={statName} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
+            <WrappedText text={statValue.toString()} textColor={color} fontFamily={FontsWithWeight.circular_900} fontSize={20} />
+            <WrappedText text={statName} textColor={colors.text} fontFamily={FontsWithWeight.circular_450} fontSize={20} />
 
         </View>
     );

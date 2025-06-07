@@ -7,6 +7,8 @@ import GameDetailsScreen from '@/screens/games/game-details';
 import ProfileScreen from '@/screens/profile';
 import { useTheme } from '@/utils/theme';
 import { View } from 'react-native';
+import { useUser } from '@/api/user';
+import { useUserDetails } from '@/utils/user';
 
 export type RootStackParamList = {
     GamesList: undefined;
@@ -44,6 +46,11 @@ const screens = [
 const StackNavigator = () => {
 
     const theme = useTheme();
+
+
+
+
+
 
     return (
         <View style={{ flex: 1, backgroundColor: theme.colors.background }}>

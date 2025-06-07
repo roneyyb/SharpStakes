@@ -11,6 +11,8 @@ import StackNavigator from '@/navigation/StackNavigator';
 import { ThemeProviderSS } from './src/utils/theme';
 import { QueryClientProvider } from 'react-query';
 import queryClient from '@/utils/queryClient';
+import '@/utils/axios';
+import { UserProvider } from '@/utils/user';
 
 function App(): React.JSX.Element {
 
@@ -28,8 +30,11 @@ function App(): React.JSX.Element {
 
     return (
         <ThemeProviderSS>
+
             <QueryClientProvider client={queryClient}>
-                <StackNavigator />
+                <UserProvider>
+                    <StackNavigator />
+                </UserProvider>
             </QueryClientProvider>
         </ThemeProviderSS>
 

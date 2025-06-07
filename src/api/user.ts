@@ -50,6 +50,8 @@ export interface User {
 // Fetch user details
 export const fetchUser = async (): Promise<User> => {
     const response = await api.get<User>('/user');
+
+    console.log(response.data, "user")
     return response.data;
 };
 
@@ -97,6 +99,7 @@ export const savePrediction = async (params: SavePredictionParams): Promise<User
 export const useUser = () => useQuery<User>('user', fetchUser, {
     // Prevent refetching on window focus to avoid race conditions
     refetchOnWindowFocus: false,
+    cacheTime: 0
 });
 
 // Mutation hook for saving predictions

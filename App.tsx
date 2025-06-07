@@ -13,6 +13,8 @@ import { QueryClientProvider } from 'react-query';
 import queryClient from '@/utils/queryClient';
 import '@/utils/axios';
 import { UserProvider } from '@/utils/user';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import '@/utils/warnings'; // Import the warnings utility
 
 function App(): React.JSX.Element {
 
@@ -30,12 +32,13 @@ function App(): React.JSX.Element {
 
     return (
         <ThemeProviderSS>
-
-            <QueryClientProvider client={queryClient}>
-                <UserProvider>
-                    <StackNavigator />
-                </UserProvider>
-            </QueryClientProvider>
+            <GestureHandlerRootView>
+                <QueryClientProvider client={queryClient}>
+                    <UserProvider>
+                        <StackNavigator />
+                    </UserProvider>
+                </QueryClientProvider>
+            </GestureHandlerRootView>
         </ThemeProviderSS>
 
     );

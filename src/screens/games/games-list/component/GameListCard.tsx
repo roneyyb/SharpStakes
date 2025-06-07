@@ -1,12 +1,12 @@
-import React from 'react';
-import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Game } from '@/api/games';
-import { useTheme } from '@/utils/theme';
-import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import ButtonPressableWithText from '@/components/button/ButtonPressableWithText';
-import { useGameScorePolling } from '@/hook/useGameScorePolling';
 import DotBlinking from '@/components/dot/DotBlinking';
+import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+import { useGameScorePolling } from '@/hook/useGameScorePolling';
+import { useTheme } from '@/utils/theme';
 import moment from 'moment';
+import React from 'react';
+import { TouchableOpacity, View } from 'react-native';
 
 interface GameListCardProps {
     game: Game;
@@ -24,9 +24,13 @@ const GameListCard = ({ game: initialGame, onPress, showButton, showFullName }: 
             activeOpacity={0.8}
             style={{ backgroundColor: colors.cardBackground, padding: 16, marginHorizontal: 5, borderRadius: 8, marginBottom: 16, boxShadow: '0 2px 4px #ffffff66', elevation: 10 }}
         >
-            {game.status === "inProgress" && <View style={{ paddingBottom: 10 }}>
-                <View style={{ flexDirection: "row", columnGap: 10, alignItems: "center", }}><DotBlinking color={colors.accent} /> <WrappedText text='Live Score' fontSize={12} textColor='#ffffff' /></View>
-            </View>}
+            {game.status === "inProgress" &&
+                <View style={{ paddingBottom: 10 }}>
+                    <View style={{ flexDirection: "row", columnGap: 10, alignItems: "center" }}>
+                        <DotBlinking color={colors.accent} />
+                        <WrappedText text='Live Score' fontSize={12} textColor={colors.text} />
+                    </View>
+                </View>}
 
 
             {game.status !== 'inProgress' && <WrappedText
@@ -39,14 +43,28 @@ const GameListCard = ({ game: initialGame, onPress, showButton, showFullName }: 
             />}
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <View style={{ rowGap: 10 }}>
-                    <View style={{ flexDirection: "row" }}>
-                        <WrappedText text={game.homeTeam.abbreviation + (game.homeTeam.score ? " (" + game.homeTeam.score + ")" : "")} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={game.homeTeam.score ? 25 : 40} />
-                    </View>    <WrappedText text={game.homeTeam.record} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
+
+                    <WrappedText
+                        text={game.homeTeam.abbreviation + (game.homeTeam.score ? " (" + game.homeTeam.score + ")" : "")}
+                        textColor={colors.text}
+                        fontFamily={FontsWithWeight.circular_700}
+                        fontSize={game.homeTeam.score ? 25 : 40} />
+
+                    <WrappedText text={game.homeTeam.record} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
                 </View>
                 <WrappedText text='VS' textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
                 <View style={{ rowGap: 10 }}>
-                    <WrappedText text={game.awayTeam.abbreviation + (game.awayTeam.score ? " (" + game.awayTeam.score + ")" : "")} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={game.awayTeam.score ? 25 : 40} />
-                    <WrappedText text={game.awayTeam.record} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={20} />
+                    <WrappedText
+                        text={game.awayTeam.abbreviation + (game.awayTeam.score ? " (" + game.awayTeam.score + ")" : "")}
+                        textColor={colors.text}
+                        fontFamily={FontsWithWeight.circular_700}
+                        fontSize={game.awayTeam.score ? 25 : 40}
+                    />
+                    <WrappedText
+                        text={game.awayTeam.record}
+                        textColor={colors.text}
+                        fontFamily={FontsWithWeight.circular_700}
+                        fontSize={20} />
                 </View>
             </View>
 

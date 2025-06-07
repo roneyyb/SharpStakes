@@ -4,18 +4,21 @@ import PredictedGameDetailCard from '../components/PredictedGameDetailCard';
 import WrappedText from '@/components/text/WrappedText';
 import { useTheme } from '@/utils/theme';
 import { FontsWithWeight } from '@/components/text/WrappedText';
+import AnimatedEntrance from '@/components/animation/AnimatedEntrance';
 
 const PredictionHistoryList = ({ predictions }: { predictions: any }) => {
     const { colors } = useTheme();
     return (
-        <View style={{}}>
-            <WrappedText text='Prediction History' textStyle={{ textTransform: "uppercase" }} textColor={colors.text} fontFamily={FontsWithWeight.circular_900} fontSize={25} />
-            <View style={{ marginTop: 10 }} />
-            <FlatList
-                data={predictions}
-                renderItem={({ item }) => <PredictedGameDetailCard prediction={item} />}
-                keyExtractor={(item, index) => index + ""}
+        <View style={{ flex: 1 }}>
+            <WrappedText
+                text='Prediction History'
+                textStyle={{ textTransform: "uppercase" }}
+                textColor={colors.text}
+                fontFamily={FontsWithWeight.circular_900}
+                fontSize={25}
             />
+            <View style={{ marginTop: 10 }} />
+            {predictions.map((item: any, index: number) => <AnimatedEntrance delay={index * 100} key={item.id}><PredictedGameDetailCard prediction={item} /></AnimatedEntrance>)}
         </View>
     );
 };

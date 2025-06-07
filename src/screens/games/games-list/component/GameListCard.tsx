@@ -7,7 +7,8 @@ import { useTheme } from '@/utils/theme';
 import moment from 'moment';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import TeamInfo from '@/components/team-info';
+import TeamInfo from './TeamInfo';
+
 
 interface GameListCardProps {
     game: Game;
@@ -44,26 +45,26 @@ const GameListCard = ({ game: initialGame, onPress, showButton, showFullName }: 
             />}
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <TeamInfo
-                  team={{
-                    abbreviation: game.homeTeam.abbreviation,
-                    score: game.homeTeam.score,
-                    record: game.homeTeam.record,
-                  }}
-                  textColor={colors.text}
+                    team={{
+                        abbreviation: game.homeTeam.abbreviation,
+                        score: game.homeTeam.score,
+                        record: game.homeTeam.record,
+                    }}
+                    textColor={colors.text}
                 />
                 <WrappedText
-                  text="VS"
-                  textColor={colors.text}
-                  fontFamily={FontsWithWeight.circular_450}
-                  fontSize={20}
+                    text="VS"
+                    textColor={colors.text}
+                    fontFamily={FontsWithWeight.circular_450}
+                    fontSize={20}
                 />
                 <TeamInfo
-                  team={{
-                    abbreviation: game.awayTeam.abbreviation,
-                    score: game.awayTeam.score,
-                    record: game.awayTeam.record,
-                  }}
-                  textColor={colors.text}
+                    team={{
+                        abbreviation: game.awayTeam.abbreviation,
+                        score: game.awayTeam.score,
+                        record: game.awayTeam.record,
+                    }}
+                    textColor={colors.text}
                 />
             </View>
 

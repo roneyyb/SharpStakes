@@ -1,14 +1,11 @@
-/* eslint-disable react-native/no-inline-styles */
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import GamesListScreen from '@/screens/games/games-list';
 import GameDetailsScreen from '@/screens/games/game-details';
+import GamesListScreen from '@/screens/games/games-list';
 import ProfileScreen from '@/screens/profile';
 import { useTheme } from '@/utils/theme';
-import { View } from 'react-native';
-import { useUser } from '@/api/user';
-import { useUserDetails } from '@/utils/user';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator, type NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 
 export type RootStackParamList = {
     GamesList: undefined;
@@ -18,9 +15,9 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// Configure screen options for bottom-to-top animation
-const screenOptions = {
-    animation: 'slide_from_right',
+// Configure screen options
+const screenOptions: NativeStackNavigationOptions = {
+    animation: 'slide_from_right' as const,
     headerShown: false,
 };
 
@@ -54,7 +51,7 @@ const StackNavigator = () => {
     const theme = useTheme();
 
     return (
-        <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{
@@ -76,5 +73,11 @@ const StackNavigator = () => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    } as ViewStyle,
+});
 
 export default StackNavigator;

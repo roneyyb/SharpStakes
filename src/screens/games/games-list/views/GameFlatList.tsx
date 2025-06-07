@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import GameListCard from '@/screens/games/games-list/component/GameListCard';
 import { Game } from '@/api/games';
+import AnimatedEntrance from '@/components/animation/AnimatedEntrance';
 
 interface GameFlatListProps {
     games: Game[];
@@ -13,7 +14,7 @@ const GameFlatList = ({ games, onPress }: GameFlatListProps) => {
         <FlatList
             data={games}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <GameListCard game={item} onPress={onPress ? () => onPress(item) : undefined} />}
+            renderItem={({ item, index }) => <AnimatedEntrance delay={index * 100}><GameListCard game={item} onPress={onPress ? () => onPress(item) : undefined} /></AnimatedEntrance>}
         />
     );
 };

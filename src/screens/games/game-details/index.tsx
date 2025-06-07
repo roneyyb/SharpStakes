@@ -1,14 +1,14 @@
-import React from 'react';
-import { Text, View, ActivityIndicator, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
 import { useGame } from '@/api/games';
-import { useTheme } from '@/utils/theme';
-import StatusBarHoc from '@/hoc/StatusBarHoc';
+import AnimatedEntrance from '@/components/animation/AnimatedEntrance';
 import HeaderWithBackTitleAndRightComponent from '@/components/header/HeaderWithBackButtonAndText';
-import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+import StatusBarHoc from '@/hoc/StatusBarHoc';
+import { useTheme } from '@/utils/theme';
+import { useRoute } from '@react-navigation/native';
+import React from 'react';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import GameListCard from '../games-list/component/GameListCard';
 import GameOdsCard from './components/GameOds';
 import GameSchedule from './components/GameSchedule';
-import GameListCard from '../games-list/component/GameListCard';
 import MakeYourPick from './components/MakeYourPick';
 
 type RouteParams = { id: string };
@@ -45,27 +45,31 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 keyboardVerticalOffset={Platform.OS === 'ios' ? 2 : 0} // Adjust as needed for your header
             >
-                <View style={{ flex: 1, backgroundColor: colors.background, paddingHorizontal: "5%", rowGap: 0 }}>
+                <View style={{ flex: 1, backgroundColor: colors.background, paddingHorizontal: '5%' }}>
+                    <HeaderWithBackTitleAndRightComponent
+                        onPressBack={() => {
+                            navigation.goBack();
+                        }}
+                        titleProps={{
+                            text: "Game Details",
+                            fontSize: 24,
+                            textColor: colors.text,
+                            fontFamily: 'CircularStd-Bold',
+                            textStyle: { marginLeft: 10 }
+                        }}
+                        containerStyle={{ marginHorizontal: "1%" }}
+                    />
+
                     <ScrollView style={{ flex: 1 }}>
-                        <HeaderWithBackTitleAndRightComponent
-                            onPressBack={() => {
-                                navigation.goBack();
-                            }}
-                            titleProps={{
-                                text: "Game Details",
-                                fontSize: 24,
-                                textColor: colors.text,
-                                fontFamily: 'CircularStd-Bold',
-                                textStyle: { marginLeft: 10 }
-                            }}
-                            containerStyle={{ marginHorizontal: "1%" }}
-                        />
                         <View style={{ marginTop: 30 }} />
-                        <GameListCard game={game} />
-                        {game.status !== "final" && <GameSchedule game={game} />}
-                        {game.odds && <GameOdsCard game={game} />}
-                        {game.status == "inProgress" && <MakeYourPick game={game} />}
+                        <AnimatedEntrance >
+                            <GameListCard game={game} />
+                        </AnimatedEntrance>
+                        {game.status !== "final" && <AnimatedEntrance delay={100}> <GameSchedule game={game} />   </AnimatedEntrance>}
+                        {game.odds && <AnimatedEntrance delay={250}><GameOdsCard game={game} /></AnimatedEntrance>}
+                        {game.status == "inProgress" && <AnimatedEntrance delay={400}><MakeYourPick game={game} /></AnimatedEntrance>}
                     </ScrollView>
+
                 </View>
             </KeyboardAvoidingView>
         </StatusBarHoc>

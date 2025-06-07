@@ -61,9 +61,61 @@
   ],
   "user": {
     "item": {
-      "id": "usr123",
-      "username": "sportsfan42",
-      "balance": 1000,
+      "item": {
+        "item": {
+          "id": "usr123",
+          "username": "sportsfan42",
+          "balance": 1000,
+          "predictions": [
+            {
+              "gameId": "gm1003",
+              "pick": "MIA",
+              "amount": 100,
+              "result": "win",
+              "payout": 190
+            },
+            {
+              "gameId": "gm1002",
+              "pick": "DAL",
+              "amount": 50,
+              "result": "pending"
+            }
+          ],
+          "stats": {
+            "wins": 7,
+            "losses": 4,
+            "pending": 1
+          }
+        },
+        "predictions": [
+          {
+            "gameId": "gm1003",
+            "pick": "MIA",
+            "amount": 100,
+            "result": "win",
+            "payout": 190
+          },
+          {
+            "gameId": "gm1002",
+            "pick": "DAL",
+            "amount": 50,
+            "result": "pending"
+          },
+          {
+            "gameId": "gm1002",
+            "pick": "DAL",
+            "amount": 85,
+            "result": "pending"
+          }
+        ],
+        "username": "sportsfan42",
+        "balance": 915,
+        "stats": {
+          "wins": 7,
+          "losses": 4,
+          "pending": 2
+        }
+      },
       "predictions": [
         {
           "gameId": "gm1003",
@@ -77,12 +129,26 @@
           "pick": "DAL",
           "amount": 50,
           "result": "pending"
+        },
+        {
+          "gameId": "gm1002",
+          "pick": "DAL",
+          "amount": 85,
+          "result": "pending"
+        },
+        {
+          "gameId": "gm1002",
+          "pick": "DAL",
+          "amount": 200,
+          "result": "pending"
         }
       ],
+      "username": "sportsfan42",
+      "balance": 715,
       "stats": {
         "wins": 7,
         "losses": 4,
-        "pending": 1
+        "pending": 3
       }
     },
     "predictions": [
@@ -104,14 +170,26 @@
         "pick": "DAL",
         "amount": 85,
         "result": "pending"
+      },
+      {
+        "gameId": "gm1002",
+        "pick": "DAL",
+        "amount": 200,
+        "result": "pending"
+      },
+      {
+        "gameId": "gm1002",
+        "pick": "DAL",
+        "amount": 3,
+        "result": "pending"
       }
     ],
     "username": "sportsfan42",
-    "balance": 915,
+    "balance": 712,
     "stats": {
       "wins": 7,
       "losses": 4,
-      "pending": 2
+      "pending": 4
     }
   }
 }

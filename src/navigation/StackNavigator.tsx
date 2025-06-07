@@ -18,6 +18,12 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+// Configure screen options for bottom-to-top animation
+const screenOptions = {
+    animation: 'slide_from_right',
+    headerShown: false,
+};
+
 export const ScreenNames = {
     GamesList: 'GamesList',
     GameDetails: 'GameDetails',
@@ -29,17 +35,17 @@ const screens = [
     {
         name: ScreenNames.GamesList,
         component: GamesListScreen,
-        options: { title: 'Games List', headerShown: false },
+        options: { title: 'Games List' },
     },
     {
         name: ScreenNames.GameDetails,
         component: GameDetailsScreen,
-        options: { title: 'Game Details', headerShown: false },
+        options: { title: 'Game Details' },
     },
     {
         name: ScreenNames.Profile,
         component: ProfileScreen,
-        options: { title: 'Profile', headerShown: false },
+        options: { title: 'Profile', animation: "slide_from_left" },
     },
 ];
 
@@ -47,16 +53,17 @@ const StackNavigator = () => {
 
     const theme = useTheme();
 
-
-
-
-
-
     return (
         <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={ScreenNames.GamesList}>
-                    {screens.map(screen => (
+                <Stack.Navigator
+                    screenOptions={{
+                        ...screenOptions,
+                        contentStyle: { backgroundColor: theme.colors.background },
+                    }}
+                    initialRouteName={ScreenNames.GamesList}
+                >
+                    {screens.map((screen) => (
                         <Stack.Screen
                             key={screen.name}
                             name={screen.name as keyof RootStackParamList}

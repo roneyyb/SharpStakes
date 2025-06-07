@@ -1,15 +1,13 @@
-import { Text, View, ActivityIndicator, StyleSheet, Pressable, ScrollView } from 'react-native';
-import React from 'react';
-import { useUser } from '@/api/user';
-import { useTheme } from '@/utils/theme';
 import { BackButton, Profile } from '@/assets/svg';
-import StatusBarHoc from '@/hoc/StatusBarHoc';
-import StatsDetails from './views/StatsDetails';
-import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
-import PredictionHistoryList from './views/PredictionHistoryList';
-import { useUserDetails } from '@/utils/user';
-import Animated from 'react-native-reanimated';
 import AnimatedEntrance from '@/components/animation/AnimatedEntrance';
+import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+import StatusBarHoc from '@/hoc/StatusBarHoc';
+import { useTheme } from '@/utils/theme';
+import { useUserDetails } from '@/utils/user';
+import React from 'react';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import PredictionHistoryList from './views/PredictionHistoryList';
+import StatsDetails from './views/StatsDetails';
 
 const ProfileScreen = ({ navigation }: { navigation: any }) => {
     const { user } = useUserDetails();
@@ -25,14 +23,16 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
             </Pressable>
             <ScrollView style={{ flex: 1, paddingBottom: 40 }}>
                 <View style={[styles.container, { backgroundColor: colors.background }]}>
-                    <View style={{ alignItems: "center", rowGap: 10 }}>
-                        <Profile height='120' width='120' color={colors.text} />
-                        <WrappedText text={"@" + user?.username} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={35} />
-                        <WrappedText text={"Balance: " + user?.balance} textColor={colors.text} fontFamily={FontsWithWeight.circular_medium} fontSize={25} />
-                    </View>
-                    <AnimatedEntrance>      <StatsDetails stats={user?.stats} /></AnimatedEntrance>
+                    <AnimatedEntrance delay={100}>
+                        <View style={{ alignItems: "center", rowGap: 10 }}>
+                            <Profile height='120' width='120' color={colors.text} />
+                            <WrappedText text={"@" + user?.username} textColor={colors.text} fontFamily={FontsWithWeight.circular_700} fontSize={35} />
+                            <WrappedText text={"Balance: " + user?.balance} textColor={colors.text} fontFamily={FontsWithWeight.circular_medium} fontSize={25} />
+                        </View>
+                    </AnimatedEntrance>
+                    <AnimatedEntrance delay={200}>      <StatsDetails stats={user?.stats} /></AnimatedEntrance>
 
-                    <AnimatedEntrance delay={100}><PredictionHistoryList predictions={user?.predictions} /></AnimatedEntrance>
+                    <AnimatedEntrance delay={300}><PredictionHistoryList predictions={user?.predictions} /></AnimatedEntrance>
                 </View>
             </ScrollView>
         </StatusBarHoc >

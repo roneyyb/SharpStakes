@@ -1,42 +1,11 @@
 import { Game } from '@/api/games';
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import { useTheme } from '@/utils/theme';
-import React, { useRef, useEffect } from 'react';
-import { TouchableOpacity, View, Animated } from 'react-native';
-import moment from "moment"
+import moment from "moment";
+import React from 'react';
+import { TouchableOpacity, View } from 'react-native';
 // BlinkingDot animates opacity for a blinking effect
-const BlinkingDot = ({ color }: { color: string }) => {
-    const opacity = useRef(new Animated.Value(1)).current;
-    useEffect(() => {
-        const blink = Animated.loop(
-            Animated.sequence([
-                Animated.timing(opacity, {
-                    toValue: 0.2,
-                    duration: 500,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(opacity, {
-                    toValue: 1,
-                    duration: 500,
-                    useNativeDriver: true,
-                }),
-            ])
-        );
-        blink.start();
-        return () => blink.stop();
-    }, [opacity]);
-    return (
-        <Animated.View
-            style={{
-                height: 10,
-                width: 10,
-                borderRadius: 20,
-                backgroundColor: color,
-                opacity,
-            }}
-        />
-    );
-};
+import DotBlinking from '@/components/dot/DotBlinking';
 
 interface GameOdsCardProps {
     game: Game;
@@ -59,11 +28,9 @@ const GameSchedule = ({ game, onPress }: GameOdsCardProps) => {
                 textStyle={{ textAlign: "center" }}
 
             />
-            {game.status === 'inProgress' ? (
-                <BlinkingDot color={colors.accent} />
-            ) : (
-                <View style={{ height: 10, width: 10, borderRadius: 20, backgroundColor: colors.accent }} />
-            )}
+
+            {game.status != "inProgress" && <View style={{ height: 10, width: 10, borderRadius: 20, backgroundColor: colors.accent + "33" }} />}
+
 
             <WrappedText
                 text={

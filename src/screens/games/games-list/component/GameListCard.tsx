@@ -22,6 +22,7 @@ interface GameListCardProps extends TouchableOpacityProps {
     onPress?: () => void;
     showButton?: boolean;
     showFullName?: boolean;
+    dontShowStatus?: boolean
 }
 
 interface GameListCardStyles {
@@ -33,15 +34,17 @@ interface GameListCardStyles {
     button: ViewStyle;
     gameStatusText: TextStyle;
     vsText: TextStyle;
+
 }
 
-const GameListCard: React.FC<GameListCardProps> = ({ 
-    game: initialGame, 
-    onPress, 
-    showButton, 
+const GameListCard: React.FC<GameListCardProps> = ({
+    game: initialGame,
+    onPress,
+    showButton,
     showFullName: _showFullName,
     style,
-    ...rest 
+    dontShowStatus,
+    ...rest
 }) => {
     const { colors } = useTheme();
     const { game } = useGameScorePolling(initialGame);
@@ -99,7 +102,7 @@ const GameListCard: React.FC<GameListCardProps> = ({
     });
 
     const renderGameStatus = useCallback(() => {
-        if (game.status === 'inProgress') {
+        if (game.status === 'inProgress' || dontShowStatus) {
             return null;
         }
         const statusText = game.status === 'scheduled'
@@ -115,7 +118,7 @@ const GameListCard: React.FC<GameListCardProps> = ({
                 fontSize={game.status === 'scheduled' ? 10 : 12}
             />
         );
-    }, [game.status, game.startTime, game.winner, styles.gameStatusText]);
+    }, [game.status, game.startTime, game.winner, styles.gameStatusText, dontShowStatus]);
 
     const renderButton = useCallback(() => {
         if ((game.status !== 'inProgress' && game.status !== 'scheduled') || !showButton || !onPress) {
@@ -123,7 +126,7 @@ const GameListCard: React.FC<GameListCardProps> = ({
         }
 
         const buttonText = game.status === 'inProgress' ? 'MAKE PREDICTION' : 'CHECK DETAILS';
-        
+
         return (
             <ButtonPressableWithText
                 textProps={{
@@ -150,7 +153,7 @@ const GameListCard: React.FC<GameListCardProps> = ({
                     <View style={styles.liveScoreContent}>
                         <DotBlinking color={colors.accent} />
                         <WrappedText
-                            text="Live Score"
+                            text="Live Score Update"
                             fontSize={12}
                             textColor={colors.text}
                         />

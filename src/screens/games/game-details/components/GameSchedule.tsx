@@ -29,7 +29,7 @@ const GameSchedule = ({ game, onPress }: GameOdsCardProps) => {
 
             />
 
-            {game.status != "inProgress" && <View style={{ height: 10, width: 10, borderRadius: 20, backgroundColor: colors.accent + "33" }} />}
+            {game.status != "inProgress" && <DotBlinking color={colors.accent} />}
 
 
             <WrappedText

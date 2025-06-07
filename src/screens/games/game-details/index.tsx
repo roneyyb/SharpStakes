@@ -116,7 +116,7 @@ const GameDetailsScreen = ({ navigation }: { navigation: any }) => {
                     <ScrollView style={styles.scrollView}>
                         <View style={styles.gameCardContainer} />
                         <AnimatedEntrance>
-                            <GameListCard game={game} />
+                            <GameListCard game={game} dontShowStatus={game.status === 'scheduled'} />
                         </AnimatedEntrance>
                         {game.status !== 'final' && (
                             <AnimatedEntrance delay={50}>

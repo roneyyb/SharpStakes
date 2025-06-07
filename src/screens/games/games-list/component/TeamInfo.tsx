@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
+
+interface TeamInfoStyles {
+    container: ViewStyle;
+}
 
 interface TeamInfoProps {
     team: {
@@ -13,6 +16,12 @@ interface TeamInfoProps {
 }
 
 const TeamInfo: React.FC<TeamInfoProps> = ({ team, textColor }) => {
+    const styles = StyleSheet.create<TeamInfoStyles>({
+        container: {
+            rowGap: 10,
+        },
+    });
+
     return (
         <View style={styles.container}>
             <WrappedText
@@ -30,11 +39,5 @@ const TeamInfo: React.FC<TeamInfoProps> = ({ team, textColor }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        rowGap: 10,
-    },
-});
 
 export default TeamInfo;

@@ -2,26 +2,38 @@
 import WrappedText, { FontsWithWeight } from '@/components/text/WrappedText';
 import { useTheme } from '@/utils/theme';
 import React, { useRef, useState } from 'react';
-import { View, Text, Pressable, Animated, StyleSheet, Dimensions } from 'react-native';
+import { View, Pressable, Animated, StyleSheet, Dimensions, ViewStyle, TextStyle } from 'react-native';
 
-interface GameFilterProps {
-    onFilterChange: (filter: 'scheduled' | 'inProgress' | 'final') => void;
+type GameFilterType = 'scheduled' | 'inProgress' | 'final';
+
+interface GameFilterStyles {
+    container: ViewStyle;
+    tabRow: ViewStyle;
+    tab: ViewStyle;
+    tabText: TextStyle;
+    selectedText: TextStyle;
+    indicator: ViewStyle;
 }
 
 const FILTERS = [
-    { label: 'Scheduled', value: 'scheduled' },
-    { label: 'In Progress', value: 'inProgress' },
-    { label: 'Completed', value: 'final' },
+    { label: 'Scheduled', value: 'scheduled' as const },
+    { label: 'In Progress', value: 'inProgress' as const },
+    { label: 'Completed', value: 'final' as const },
 ];
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TAB_WIDTH = SCREEN_WIDTH / FILTERS.length - 32 / FILTERS.length; // padding adjustment
 
-const GameFilter = ({ onFilterChange }: GameFilterProps) => {
-    const [selected, setSelected] = useState<'scheduled' | 'inProgress' | 'final'>('scheduled');
-    const translateX = useRef(new Animated.Value(0)).current;
+interface GameFilterProps {
+    onFilterChange: (filter: GameFilterType) => void;
+}
 
-    const handlePress = (value: 'scheduled' | 'inProgress' | 'final', index: number) => {
+const GameFilter = ({ onFilterChange }: GameFilterProps) => {
+    const [selected, setSelected] = useState<GameFilterType>('scheduled');
+    const translateX = useRef(new Animated.Value(0)).current;
+    const { colors } = useTheme();
+
+    const handlePress = (value: GameFilterType, index: number) => {
         setSelected(value);
         onFilterChange(value);
         Animated.spring(translateX, {
@@ -30,30 +42,80 @@ const GameFilter = ({ onFilterChange }: GameFilterProps) => {
         }).start();
     };
 
-    const { colors } = useTheme()
+    const styles = StyleSheet.create<GameFilterStyles>({
+        container: {
+            marginVertical: 16,
+            borderRadius: 8,
+            backgroundColor: colors.filterBackground,
+        },
+        tabRow: {
+            flexDirection: 'row',
+            position: 'relative',
+            borderRadius: 8,
+            overflow: 'hidden',
+        },
+        tab: {
+            flex: 1,
+            paddingVertical: 12,
+            alignItems: 'center',
+            zIndex: 1,
+        },
+        tabText: {
+            fontSize: 16,
+            color: colors.text,
+            fontWeight: '500',
+        },
+        selectedText: {
+            color: colors.filterActiveText,
+            fontWeight: 'bold',
+        },
+        indicator: {
+            position: 'absolute',
+            height: '100%',
+            backgroundColor: colors.cardBackground,
+            borderRadius: 8,
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            elevation: 1,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 2,
+        },
+    });
+
     return (
-        <View style={[styles.container, { backgroundColor: colors.filterBackground }]}>
-            <View style={[styles.tabRow]}>
-                {FILTERS.map((filter, idx) => (
-                    <Pressable
-                        key={filter.value}
-                        style={[styles.tab]}
-                        onPress={() => handlePress(filter.value as any, idx)}
-                    >
-                        <WrappedText
-                            text={filter.label}
-                            textColor={colors.text}
-                            fontFamily={selected === filter.value ? FontsWithWeight.circular_700 : FontsWithWeight.circular_450}
-                            fontSize={16}
-                            textStyle={[styles.tabText, selected === filter.value ? { color: colors.filterActiveText } : {}]}
-                        />
-                    </Pressable>
-                ))}
+        <View style={styles.container}>
+            <View style={styles.tabRow}>
+                {FILTERS.map((filter, idx) => {
+                    const isSelected = selected === filter.value;
+                    return (
+                        <Pressable
+                            key={filter.value}
+                            style={styles.tab}
+                            onPress={() => handlePress(filter.value, idx)}>
+                            <WrappedText
+                                text={filter.label}
+                                textColor={colors.text}
+                                fontFamily={
+                                    isSelected
+                                        ? FontsWithWeight.circular_700
+                                        : FontsWithWeight.circular_450
+                                }
+                                fontSize={16}
+                                textStyle={[
+                                    styles.tabText,
+                                    isSelected && styles.selectedText,
+                                ]}
+                            />
+                        </Pressable>
+                    );
+                })}
                 <Animated.View
                     style={[
                         styles.indicator,
                         {
-                            backgroundColor: colors.cardBackground,
                             width: TAB_WIDTH,
                             transform: [{ translateX }],
                         },
@@ -64,47 +126,5 @@ const GameFilter = ({ onFilterChange }: GameFilterProps) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        marginVertical: 16,
-        borderRadius: 8,
-    },
-    tabRow: {
-        flexDirection: 'row',
-        position: 'relative',
-
-        borderRadius: 8,
-        overflow: 'hidden',
-    },
-    tab: {
-        flex: 1,
-        paddingVertical: 12,
-        alignItems: 'center',
-        zIndex: 1,
-    },
-    tabText: {
-        fontSize: 16,
-        color: '#666',
-        fontWeight: '500',
-    },
-    selectedText: {
-        color: '#ffffff',
-        fontWeight: 'bold',
-    },
-    indicator: {
-        position: 'absolute',
-        height: '100%',
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        top: 0,
-        left: 0,
-        zIndex: 0,
-        elevation: 1,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-    },
-});
-
 export default GameFilter;
+
